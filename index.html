@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Countries_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:8, minZoom:2
+        }).fitBounds([[-37.48287896635015,-30.149190323408206],[39.701717718125344,63.87568200131649]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            map.setMaxBounds(map.getBounds());
+        }
+        map.createPane('pane_JanAprJul_0');
+        map.getPane('pane_JanAprJul_0').style.zIndex = 400;
+        var img_JanAprJul_0 = 'data/JanAprJul_0.png';
+        var img_bounds_JanAprJul_0 = [[-35.645150473862635,-17.94833937670804],[37.86398922563783,51.89567396358478]];
+        var layer_JanAprJul_0 = new L.imageOverlay(img_JanAprJul_0,
+                                              img_bounds_JanAprJul_0,
+                                              {pane: 'pane_JanAprJul_0'});
+        bounds_group.addLayer(layer_JanAprJul_0);
+        map.addLayer(layer_JanAprJul_0);
+        map.createPane('pane_MarJunSep_1');
+        map.getPane('pane_MarJunSep_1').style.zIndex = 401;
+        var img_MarJunSep_1 = 'data/MarJunSep_1.png';
+        var img_bounds_MarJunSep_1 = [[-35.645150473862635,-17.94833937670804],[37.86398922563783,51.89567396358478]];
+        var layer_MarJunSep_1 = new L.imageOverlay(img_MarJunSep_1,
+                                              img_bounds_MarJunSep_1,
+                                              {pane: 'pane_MarJunSep_1'});
+        bounds_group.addLayer(layer_MarJunSep_1);
+        map.addLayer(layer_MarJunSep_1);
+        map.createPane('pane_MayAugNov_2');
+        map.getPane('pane_MayAugNov_2').style.zIndex = 402;
+        var img_MayAugNov_2 = 'data/MayAugNov_2.png';
+        var img_bounds_MayAugNov_2 = [[-35.645150473862635,-17.94833937670804],[37.86398922563783,51.89567396358478]];
+        var layer_MayAugNov_2 = new L.imageOverlay(img_MayAugNov_2,
+                                              img_bounds_MayAugNov_2,
+                                              {pane: 'pane_MayAugNov_2'});
+        bounds_group.addLayer(layer_MayAugNov_2);
+        map.addLayer(layer_MayAugNov_2);
+        function pop_Countries_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADM0_CODE'] !== null ? autolinker.link(feature.properties['ADM0_CODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADM0_NAME'] !== null ? autolinker.link(feature.properties['ADM0_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME_v2'] !== null ? autolinker.link(feature.properties['NAME_v2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Countries_3_0() {
+            return {
+                pane: 'pane_Countries_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6039215686274509)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Countries_3');
+        map.getPane('pane_Countries_3').style.zIndex = 403;
+        map.getPane('pane_Countries_3').style['mix-blend-mode'] = 'normal';
+        var layer_Countries_3 = new L.geoJson(json_Countries_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Countries_3',
+            layerName: 'layer_Countries_3',
+            pane: 'pane_Countries_3',
+            onEachFeature: pop_Countries_3,
+            style: style_Countries_3_0,
+        });
+        bounds_group.addLayer(layer_Countries_3);
+        map.addLayer(layer_Countries_3);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Countries_3.png" /> Countries': layer_Countries_3,"May/Aug/Nov": layer_MayAugNov_2,"Mar/Jun/Sep": layer_MarJunSep_1,"Jan/Apr/Jul": layer_JanAprJul_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
